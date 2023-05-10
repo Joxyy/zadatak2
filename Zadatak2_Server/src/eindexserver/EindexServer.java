@@ -4,7 +4,9 @@
  */
 package eindexserver;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,10 +35,11 @@ public class EindexServer {
     }
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         // TODO code application logic here
         Scanner sc = new Scanner(System.in);
         int odluka = -1;
+        Ssluzba ssluzba = new Ssluzba();
         
         try {
             while(Ssluzba.login());
@@ -53,7 +56,7 @@ public class EindexServer {
                     System.out.println("Izlaz iz programa");	
                     break;
                 case 1:	
-                    Ssluzba.dodStud();	
+                    ssluzba.dodStud();	
                     break;
                 default:
                     System.out.println("Nepostojeca komanda");

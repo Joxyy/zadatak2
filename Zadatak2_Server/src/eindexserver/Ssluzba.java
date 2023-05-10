@@ -11,7 +11,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -19,17 +22,21 @@ import java.util.Scanner;
  */
 public class Ssluzba {
     
+    public ArrayList<Student> studenti = new ArrayList<Student>();
     
+    private static String sP = System.getProperty("file.separator");
+    private static File f = new File("."+sP+"files"+sP+"users.txt"); 
+
+    public static File getF() {
+        return f;
+    }
+
     
     public static boolean login() throws IOException{
 
-        //	ucitavanje studenata
-        //sada moze biti razliciti broj ocena
-        //ucitavamo iz studenti.csv
-        String sP = System.getProperty("file.separator");
+        //	ucitavanje users.txt
         Scanner sc = new Scanner(System.in);
-        
-        File f = new File("."+sP+"files"+sP+"users.txt"); 
+
         //provera da li postoji fajl
         try{
             BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream( f), "UTF8")); 
@@ -65,23 +72,23 @@ public class Ssluzba {
         }
         return true;
     }
-    
+
     public static void ispisiOpcije(){	
-            System.out.println("-------------------------------------------------------------------------");
-            System.out.println("\tOpcija broj 1 - Dodavanje/izmena podataka o studentu");
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("\tOpcija broj 1 - Dodavanje novog studenta");
             System.out.println("\tOpcija broj 2 - Dodavanje novog predmeta");
             System.out.println("\tOpcija broj 3 - Dodavanje studenata na predmet");
             System.out.println("\tOpcija broj 4 - Dodela/azuriranje poena");
             System.out.println("\tOpcija broj 5 - Dodavanje admina");
             System.out.println("\t\t ...");
             System.out.println("\tOpcija broj 0 - IZLAZ");	
-            System.out.println("-------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------");
     }
     
     public static int proveriOpciju(){
-        int opcija = -1;
-        Scanner sc = new Scanner(System.in);
+        int opcija = -1;      
         
+        Scanner sc = new Scanner(System.in);
         boolean notRead = true;
         do {
                 if (sc.hasNextInt()) {
@@ -97,11 +104,28 @@ public class Ssluzba {
         return opcija;
     }
     
-    public static void dodStud(){
+    public void dodStud() throws FileNotFoundException, UnsupportedEncodingException{
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("-------------------------------------");
+        boolean postojiStud = false;
+        System.out.println("---------------------------------------------------------------------");
         System.out.println("Unesite broj indexa");
         String index = sc.nextLine();
+        String regexPattern = "^[eE][1-3][1-9][0-9]*{0,2}[-/]20(?:[01][0-9]|2[0-3])$";
+        if(index.matches(regexPattern)){
+            for(Student s : studenti){
+                if (s.getBrIndexa().equals(index)){
+                    System.out.println("Student sa brojem indexa " + index + "vec postoji");
+                    postojiStud=true;
+                }
+            }
+            if(!postojiStud){
+                studenti.add(new Student(index));
+            }
+        }else System.out.println("Neodgovarajuci format ");
     }
+    public void dodPredmet(){
+    
+    }
+    
 }
