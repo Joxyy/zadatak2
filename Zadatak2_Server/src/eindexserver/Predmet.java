@@ -13,9 +13,9 @@ import java.util.Scanner;
  */
 public class Predmet {
     private String nazivPredmeta;
-    private ArrayList<String> kategorije;
-    private ArrayList<Integer> maxPoeni;
-    private ArrayList<Integer> poeni;
+    private ArrayList<String> kategorije = new ArrayList<String>();
+    private ArrayList<Integer> maxPoeni= new ArrayList<Integer>();
+    private ArrayList<Integer> poeni = new ArrayList<Integer>();
     
     Scanner sc = new Scanner(System.in);
     
@@ -42,7 +42,6 @@ public class Predmet {
             if(unos.equalsIgnoreCase("ne")) flg=false;
         }while(flg);
         
-        flg=true;
         this.unosMax();
     }
     
@@ -57,9 +56,34 @@ public class Predmet {
             for(int m : maxPoeni){
                 suma+=m;
             }
-            if(suma!=100) System.out.println("Zbirno mora biti 100 poena, ponovni pokusaj");
+            if(suma!=100) {
+                System.out.println("Zbirno mora biti 100 poena, ponovni pokusaj");
+                maxPoeni.clear();
+                suma=0;
+            }
         }while(suma!=100);
         System.out.println("---------------------------------------------------------------------");
+    }
+    public int unosOcene(){
+        int suma=0;
+        for(int i=0; i<this.kategorije.size();i++){
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("Unos ocene za " + kategorije.get(i));
+            
+            int unos = 0;
+            do{
+                unos=ocitajCeoBroj();
+            }while(unos<=this.maxPoeni.get(i));
+            suma+=unos;
+        }
+        
+        if (suma < 51) return 5;
+        else if (suma>=51 && suma<=60) return 6;
+        else if (suma>=61 && suma<=70) return 7;
+        else if (suma>=71 && suma<=80) return 8;
+        else if (suma>=81 && suma<=90) return 9;
+        else if(suma>=91 && suma<=100) return 10;
+        else return -1;
     }
     
     public int ocitajCeoBroj(){

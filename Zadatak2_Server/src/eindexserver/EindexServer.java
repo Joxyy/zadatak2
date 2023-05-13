@@ -58,10 +58,16 @@ public class EindexServer {
                 case 1:	
                     ssluzba.dodStud();	
                     break;
+                case 2:	
+                    ssluzba.dodPredmet();	
+                    break;
+                case 3:	
+                    ssluzba.dodPredmet();	
+                    break;
                 default:
                     System.out.println("Nepostojeca komanda");
                     break;
-                case 2:
+                
             }
         }
     } 

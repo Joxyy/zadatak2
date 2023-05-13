@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 public class Ssluzba {
     
     public ArrayList<Student> studenti = new ArrayList<Student>();
+    public ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
     
     private static String sP = System.getProperty("file.separator");
     private static File f = new File("."+sP+"files"+sP+"users.txt"); 
@@ -125,7 +126,7 @@ public class Ssluzba {
         }else System.out.println("Neodgovarajuci format ");
     }
     public void dodPredmet(){
-    
+        predmeti.add(new Predmet());
     }
     
 }
