@@ -55,6 +55,29 @@ public class PrijemSaServera implements Runnable{
                 else if(line.equals("Neuspesan login")){
                     parent.lProveriLogin.setText("Pogresno uneti podaci");
                 }
+                else if(line.startsWith("Predmeti: ")){
+                     String[] imena = line.split(":")[1].split(" ");
+
+                    parent.getCbPredmeti().removeAllItems();
+
+                    for (String ime : imena) {
+                        if (!ime.equals("")) {
+                            parent.getCbPredmeti().addItem(ime.trim());
+                            parent.getCbPredmeti2().addItem(ime.trim());
+                        }
+                    }
+                }else if(line.startsWith("Studenti: ")){
+                     String[] imena = line.split(":")[1].split(" ");
+
+                    parent.getCbPredmeti().removeAllItems();
+
+                    for (String ime : imena) {
+                        if (!ime.equals("")) {
+                            parent.getCbStudenti().addItem(ime.trim());
+                        }
+                    }
+                }
+                
             } catch (IOException ex) {
                 //Logger.getLogger(ReceiveMessageFromServer.class.getName()).log(Level.SEVERE, null, ex);
             }

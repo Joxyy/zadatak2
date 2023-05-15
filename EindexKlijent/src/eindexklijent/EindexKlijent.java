@@ -13,6 +13,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -68,6 +69,30 @@ public class EindexKlijent extends javax.swing.JFrame {
     public void setBtnKonekcija(JButton btnKonekcija) {
         this.btnKonekcija = btnKonekcija;
     }
+
+    public JComboBox<String> getCbPredmeti() {
+        return cbPredmeti;
+    }
+
+    public JComboBox<String> getCbPredmeti2() {
+        return cbPredmeti2;
+    }
+
+    public JComboBox<String> getCbStudenti() {
+        return cbStudenti;
+    }
+
+    public void setCbPredmeti(JComboBox<String> cbPredmeti) {
+        this.cbPredmeti = cbPredmeti;
+    }
+
+    public void setCbPredmeti2(JComboBox<String> cbPredmeti2) {
+        this.cbPredmeti2 = cbPredmeti2;
+    }
+
+    public void setCbStudenti(JComboBox<String> cbStudenti) {
+        this.cbStudenti = cbStudenti;
+    }
     
     
     
@@ -97,27 +122,27 @@ public class EindexKlijent extends javax.swing.JFrame {
         pAdmin = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btnStud = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDodAdmina = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         tfIme = new javax.swing.JTextField();
         tfPrezime = new javax.swing.JTextField();
         tfIndex = new javax.swing.JTextField();
         tfJmbg = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        tfNazivPredmeta = new javax.swing.JTextField();
+        btnDodPredmet = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         lOcena = new javax.swing.JLabel();
         lStudent = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        btnDodNaPredmet = new javax.swing.JButton();
+        cbStudenti = new javax.swing.JComboBox<>();
+        cbPredmeti2 = new javax.swing.JComboBox<>();
+        cbPredmeti = new javax.swing.JComboBox<>();
         jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        tfAdminUsername = new javax.swing.JTextField();
+        tfAdminPass = new javax.swing.JTextField();
         tfNewUsername = new javax.swing.JTextField();
         tfNewPassword = new javax.swing.JTextField();
         pStudent = new javax.swing.JPanel();
@@ -244,9 +269,14 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 255, 153));
-        jButton2.setText("Dodaj Admina");
-        jButton2.setActionCommand("Dodaj admina");
+        btnDodAdmina.setBackground(new java.awt.Color(153, 255, 153));
+        btnDodAdmina.setText("Dodaj Admina");
+        btnDodAdmina.setActionCommand("Dodaj admina");
+        btnDodAdmina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodAdminaActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(153, 255, 153));
         jButton3.setText("Upis ocene");
@@ -273,14 +303,14 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jTextField6.setText("naziv predmeta");
+        tfNazivPredmeta.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        tfNazivPredmeta.setText("naziv predmeta");
 
-        jButton4.setBackground(new java.awt.Color(153, 255, 153));
-        jButton4.setText("Dodaj predmet");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnDodPredmet.setBackground(new java.awt.Color(153, 255, 153));
+        btnDodPredmet.setText("Dodaj predmet");
+        btnDodPredmet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnDodPredmetActionPerformed(evt);
             }
         });
 
@@ -301,20 +331,31 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(153, 255, 153));
-        jButton6.setText("Dodaj studenta");
+        btnDodNaPredmet.setBackground(new java.awt.Color(153, 255, 153));
+        btnDodNaPredmet.setText("Dodaj na predmet");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStudenti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbStudentiActionPerformed(evt);
+            }
+        });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPredmeti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPredmetiActionPerformed(evt);
+            }
+        });
 
         jTextField8.setText("jTextField8");
 
-        jTextField9.setText("Korisnicko ime");
+        tfAdminUsername.setText("Korisnicko ime");
 
-        jTextField10.setText("Lozinka");
+        tfAdminPass.setText("Lozinka");
+        tfAdminPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfAdminPassActionPerformed(evt);
+            }
+        });
 
         tfNewUsername.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         tfNewUsername.setText("username");
@@ -345,14 +386,14 @@ public class EindexKlijent extends javax.swing.JFrame {
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pAdminLayout.createSequentialGroup()
                         .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDodAdmina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnDodNaPredmet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField9))
+                            .addComponent(cbPredmeti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbStudenti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfAdminUsername))
                         .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pAdminLayout.createSequentialGroup()
                                 .addGap(12, 12, 12)
@@ -360,8 +401,8 @@ public class EindexKlijent extends javax.swing.JFrame {
                             .addGroup(pAdminLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(tfAdminPass, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbPredmeti2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())
                     .addGroup(pAdminLayout.createSequentialGroup()
                         .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -373,9 +414,9 @@ public class EindexKlijent extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(11, 11, 11))
                     .addGroup(pAdminLayout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDodPredmet, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField6)
+                        .addComponent(tfNazivPredmeta)
                         .addContainerGap())
                     .addGroup(pAdminLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -431,23 +472,23 @@ public class EindexKlijent extends javax.swing.JFrame {
                 .addComponent(tfNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(tfNazivPredmeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDodPredmet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDodNaPredmet)
+                    .addComponent(cbStudenti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPredmeti2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDodAdmina)
+                    .addComponent(tfAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAdminPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
@@ -639,9 +680,12 @@ public class EindexKlijent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNewPasswordActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnDodPredmetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodPredmetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        if (!(this.tfNazivPredmeta.getText().equals(""))) {
+            this.pw.println("noviPredmet:"+tfNazivPredmeta.getText());
+    	}
+    }//GEN-LAST:event_btnDodPredmetActionPerformed
 
     private void tfImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfImeActionPerformed
         // TODO add your handling code here:
@@ -652,6 +696,26 @@ public class EindexKlijent extends javax.swing.JFrame {
         pAdmin.setVisible(false);
         pStudent.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
+
+    private void tfAdminPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAdminPassActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfAdminPassActionPerformed
+
+    private void btnDodAdminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodAdminaActionPerformed
+        // TODO add your handling code here:
+        if (!(this.tfAdminUsername.getText().equals(""))&& !(this.tfAdminPass.getText().equals(""))) {
+            this.pw.println("noviAdmin:"+tfAdminUsername.getText()+ ":"+ this.tfAdminPass.getText());
+    	}
+    }//GEN-LAST:event_btnDodAdminaActionPerformed
+
+    private void cbPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPredmetiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPredmetiActionPerformed
+
+    private void cbStudentiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStudentiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbStudentiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -689,19 +753,19 @@ public class EindexKlijent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDodAdmina;
+    private javax.swing.JButton btnDodNaPredmet;
+    private javax.swing.JButton btnDodPredmet;
     private javax.swing.JButton btnEnter;
     private javax.swing.JButton btnKonekcija;
     private javax.swing.JButton btnStud;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JComboBox<String> cbPredmeti;
+    private javax.swing.JComboBox<String> cbPredmeti2;
+    public javax.swing.JComboBox<String> cbStudenti;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -712,11 +776,8 @@ public class EindexKlijent extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lKonekcija;
     public javax.swing.JLabel lOcena;
     public javax.swing.JLabel lProveriLogin;
@@ -726,9 +787,12 @@ public class EindexKlijent extends javax.swing.JFrame {
     public javax.swing.JPanel pStudent;
     private javax.swing.JPasswordField pfPass;
     public javax.swing.JTextArea taPodaciOStudentu;
+    private javax.swing.JTextField tfAdminPass;
+    private javax.swing.JTextField tfAdminUsername;
     public javax.swing.JTextField tfIme;
     private javax.swing.JTextField tfIndex;
     private javax.swing.JTextField tfJmbg;
+    private javax.swing.JTextField tfNazivPredmeta;
     private javax.swing.JTextField tfNewPassword;
     private javax.swing.JTextField tfNewUsername;
     private javax.swing.JTextField tfPrezime;

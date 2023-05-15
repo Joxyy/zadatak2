@@ -22,7 +22,7 @@ public class EindexServer {
 
     private ServerSocket ssocket;
     private int port;
-    private ArrayList<konektovaniKlijenti> klijenti;
+    private ArrayList<KonektovaniKlijenti> klijenti;
     
     public void setSsocket(ServerSocket ssocket) {
         this.ssocket = ssocket;
@@ -60,7 +60,7 @@ public class EindexServer {
             if (klijent != null) {
                 //Povezao se novi klijent, kreiraj objekat klase konektovani klijenti
                 //koji ce biti zaduzen za komunikaciju sa njim
-                konektovaniKlijenti clnt = new konektovaniKlijenti(klijent, klijenti);
+                KonektovaniKlijenti clnt = new KonektovaniKlijenti(klijent, klijenti);
                 //i dodaj ga na listu povezanih klijenata jer ce ti trebati kasnije
                 klijenti.add(clnt);
                 //kreiraj novu nit (konstruktoru prosledi klasu koja implementira Runnable interfejs)

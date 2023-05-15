@@ -8,9 +8,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,7 +27,7 @@ public class Ssluzba {
    
     
     public static ArrayList<Student> studenti = new ArrayList<Student>();
-    public ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
+    public static ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
     
     private static String sP = System.getProperty("file.separator");
     private static File f = new File("."+sP+"files"+sP+"users.txt"); 
@@ -77,23 +80,11 @@ public class Ssluzba {
     }
 
     
-    public static int proveriOpciju(){
-        int opcija = -1;      
-        
-        Scanner sc = new Scanner(System.in);
-        boolean notRead = true;
-        do {
-                if (sc.hasNextInt()) {
-                        opcija= sc.nextInt();
-                        if(opcija>=0 && opcija<= 5) notRead = false;
-                        else System.out.println("Nepostojeca opcija, pokusajte ponovo:");
-                } else {
-                        System.out.println("Ne odgovarajuc unos. Unesite broj ispred opcije:");
-                }
-                sc.nextLine(); //cisti sve sa ulaza sto nije broj ili ostatak teste posla broja
-        } while (notRead);
-        
-        return opcija;
+    public static void dodAdmin(String username, String password) throws FileNotFoundException, UnsupportedEncodingException{
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(f,true), "UTF8"));
+        out.println(username + ":"+ password + ":" + "admin");
+        out.flush();
+        out.close();
     }
     
     public static void dodStud(String ime, String prezime, String index, String jmbg, String username, String password) throws FileNotFoundException, UnsupportedEncodingException{
@@ -108,8 +99,8 @@ public class Ssluzba {
             studenti.add(new Student(ime, prezime,index,jmbg,username,password));
         }
     }
-    public void dodPredmet(){
-        predmeti.add(new Predmet());
+    public static void dodPredmet(String nazivPredmeta){
+        predmeti.add(new Predmet(nazivPredmeta));
     }
     
 }

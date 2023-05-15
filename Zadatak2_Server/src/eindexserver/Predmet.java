@@ -16,17 +16,50 @@ public class Predmet {
     private ArrayList<String> kategorije = new ArrayList<String>();
     private ArrayList<Integer> maxPoeni= new ArrayList<Integer>();
     private ArrayList<Integer> poeni = new ArrayList<Integer>();
+
+    public String getNazivPredmeta() {
+        return nazivPredmeta;
+    }
+
+    public ArrayList<String> getKategorije() {
+        return kategorije;
+    }
+
+    public ArrayList<Integer> getMaxPoeni() {
+        return maxPoeni;
+    }
+
+    public ArrayList<Integer> getPoeni() {
+        return poeni;
+    }
+
+    public void setNazivPredmeta(String nazivPredmeta) {
+        this.nazivPredmeta = nazivPredmeta;
+    }
+
+    public void setKategorije(ArrayList<String> kategorije) {
+        this.kategorije = kategorije;
+    }
+
+    public void setMaxPoeni(ArrayList<Integer> maxPoeni) {
+        this.maxPoeni = maxPoeni;
+    }
+
+    public void setPoeni(ArrayList<Integer> poeni) {
+        this.poeni = poeni;
+    }
+    
+    
     
     Scanner sc = new Scanner(System.in);
     
-    public Predmet(){
+    public Predmet(String nazivPredmeta){
         System.out.println("---------------------------------------------------------------------");
-        System.out.println("Unos naziva novog predmeta");
-        
-        String unos = sc.nextLine();
-        this.nazivPredmeta=unos;
+
+        this.nazivPredmeta=nazivPredmeta;
+        System.out.println("Unesen je predmet: " + this.nazivPredmeta);
+        System.out.println("---------------------------------------------------------------------");
                     
-        this.unosKat();
         
     }
     public void unosKat(){

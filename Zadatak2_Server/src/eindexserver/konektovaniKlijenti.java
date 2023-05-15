@@ -19,16 +19,16 @@ import java.util.logging.Logger;
  *
  * @author Joxyy
  */
-class konektovaniKlijenti implements Runnable{
+class KonektovaniKlijenti implements Runnable{
         //atributi koji se koriste za komunikaciju sa klijentom
     private Socket socket;
     private String userName;
     private BufferedReader br;
     private PrintWriter pw;
-    private ArrayList<konektovaniKlijenti> sviKlijenti;
+    private ArrayList<KonektovaniKlijenti> sviKlijenti;
     
         //Konstruktor klase, prima kao argument socket kao vezu sa uspostavljenim klijentom
-    public konektovaniKlijenti(Socket socket, ArrayList<konektovaniKlijenti> sviKlijenti) {
+    public KonektovaniKlijenti(Socket socket, ArrayList<KonektovaniKlijenti> sviKlijenti) {
         this.socket = socket;
         this.sviKlijenti = sviKlijenti;
         
@@ -42,7 +42,7 @@ class konektovaniKlijenti implements Runnable{
             //zasad ne znamo user name povezanog klijenta
             this.userName = "";
         } catch (IOException ex) {
-            Logger.getLogger(konektovaniKlijenti.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KonektovaniKlijenti.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -51,17 +51,45 @@ class konektovaniKlijenti implements Runnable{
      * Users: ImePrvog ImeDrugog ImeTreceg ... kada se napravi poruka tog
      * formata, ona se salje svim povezanim korisnicima
      */
-    void klijentiStatus() {
+    void studentiStatus() {
         //priprema string sa trenutno povezanim korisnicima u formatu 
         //Users: Milan Dusan Petar
         //i posalji svim konektovanim klijentima
-        String konektovaniKlijenti = "Korisnici:";
-        for (konektovaniKlijenti c : this.sviKlijenti) {
-            konektovaniKlijenti += " " + c.getUserName();
+        String studenti = "Studenti: ";
+        
+        for (Student s : Ssluzba.studenti) {
+            studenti += " " + s.getBrIndexa();
+        }
+        for (KonektovaniKlijenti svimaUpdateCB : this.sviKlijenti) {
+            svimaUpdateCB.pw.println(studenti);
         }
 
-        System.out.println(konektovaniKlijenti);
+        
+        System.out.println(studenti);
     }
+    void klijentiStatus() {
+        //priprema string sa trenutno povezanim korisnicima u formatu 
+        //Users: Milan Dusan Petar
+        //i posalji svim korisnicima koji se trenutno nalaze u chat room-u
+        String connectedUsers = "Users:";
+        for (KonektovaniKlijenti c : this.sviKlijenti) {
+            connectedUsers += " " + c.getUserName();
+        }
+
+
+        System.out.println(connectedUsers);
+    }
+    void predmetiStatus() {
+        String predmeti = "Predmeti: ";
+            for (Predmet p : Ssluzba.predmeti){
+            predmeti += " " + p.getNazivPredmeta();
+        }
+        for (KonektovaniKlijenti svimaUpdateCB : this.sviKlijenti) {
+            svimaUpdateCB.pw.println(predmeti);
+        }
+        System.out.println(predmeti);
+    }
+
     
     @Override
     public void run() {
@@ -98,7 +126,7 @@ class konektovaniKlijenti implements Runnable{
                     } else {
                         //ako je userName null to znaci da je terminiran klijent thread
                         System.out.println("Diskonektovani korisnici: " + this.userName);
-                        for (konektovaniKlijenti cl : this.sviKlijenti) {
+                        for (KonektovaniKlijenti cl : this.sviKlijenti) {
                             if (cl.getUserName().equals(this.userName)) {
                                 this.sviKlijenti.remove(cl);
                                 break;
@@ -116,8 +144,17 @@ class konektovaniKlijenti implements Runnable{
                     if (line != null) {
                         String [] tokens = line.split(":");
                         if (tokens[0].equals("student")) {
-                        Ssluzba.dodStud(tokens[1],tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);	
+                            Ssluzba.dodStud(tokens[1],tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
+                            studentiStatus();
                         }
+                        else if (tokens[0].equals("noviAdmin")){
+                            Ssluzba.dodAdmin(tokens[1],tokens[2]);
+                        }
+                        else if (tokens[0].equals("noviPredmet")){
+                            Ssluzba.dodPredmet(tokens[1]);
+                            predmetiStatus();
+                        }
+                
                     }
 
                 }
@@ -127,7 +164,7 @@ class konektovaniKlijenti implements Runnable{
                 //Ovako se uklanja element iz kolekcije 
                 //ne moze se prolaziti kroz kolekciju sa foreach a onda u 
                 //telu petlje uklanjati element iz te iste kolekcije
-                Iterator<konektovaniKlijenti> it = this.sviKlijenti.iterator();
+                Iterator<KonektovaniKlijenti> it = this.sviKlijenti.iterator();
                 while (it.hasNext()) {
                     if (it.next().getUserName().equals(this.userName)) {
                         it.remove();
@@ -155,7 +192,7 @@ class konektovaniKlijenti implements Runnable{
         return pw;
     }
 
-    public ArrayList<konektovaniKlijenti> getSviKlijenti() {
+    public ArrayList<KonektovaniKlijenti> getSviKlijenti() {
         return sviKlijenti;
     }
 
@@ -175,7 +212,7 @@ class konektovaniKlijenti implements Runnable{
         this.pw = pw;
     }
 
-    public void setSviKlijenti(ArrayList<konektovaniKlijenti> sviKlijenti) {
+    public void setSviKlijenti(ArrayList<KonektovaniKlijenti> sviKlijenti) {
         this.sviKlijenti = sviKlijenti;
     }
     
