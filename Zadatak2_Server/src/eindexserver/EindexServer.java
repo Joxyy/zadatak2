@@ -8,8 +8,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,8 +22,8 @@ public class EindexServer {
 
     private ServerSocket ssocket;
     private int port;
-    //private ArrayList<ConnectedChatRoomClient> clients;
-
+    private ArrayList<konektovaniKlijenti> klijenti;
+    
     public void setSsocket(ServerSocket ssocket) {
         this.ssocket = ssocket;
     }
@@ -34,41 +37,63 @@ public class EindexServer {
         return port;
     }
     
+    public EindexServer(int port) {
+        this.klijenti = new ArrayList<>();
+        try {
+            this.port = port;
+            this.ssocket = new ServerSocket(port);
+        } catch (IOException ex) {
+            Logger.getLogger(EindexServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void prihvatiKlijente() {
+        Socket klijent = null;
+        Thread thr;
+        while (true) {
+            try {
+                System.out.println("Cekam klijente..");
+                klijent = this.ssocket.accept();
+            } catch (IOException ex) {
+                Logger.getLogger(EindexServer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (klijent != null) {
+                //Povezao se novi klijent, kreiraj objekat klase konektovani klijenti
+                //koji ce biti zaduzen za komunikaciju sa njim
+                konektovaniKlijenti clnt = new konektovaniKlijenti(klijent, klijenti);
+                //i dodaj ga na listu povezanih klijenata jer ce ti trebati kasnije
+                klijenti.add(clnt);
+                //kreiraj novu nit (konstruktoru prosledi klasu koja implementira Runnable interfejs)
+                thr = new Thread(clnt);
+                //..i startuj ga
+                thr.start();
+            } else {
+                break;
+            }
+        }
+    }
+    
     
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         // TODO code application logic here
+        
+        EindexServer server = new EindexServer(6001);
+        
         Scanner sc = new Scanner(System.in);
         int odluka = -1;
-        Ssluzba ssluzba = new Ssluzba();
         
-        try {
-            while(Ssluzba.login());
-        } catch (IOException e1) {
-            e1.printStackTrace();
-	}
+        
+        System.out.println("Server pokrenut, slusam na portu 6001");
+
+        //Prihvataj klijente u beskonacnoj petlji
+        server.prihvatiKlijente();
+        
         
         while(odluka!= 0){
             Ssluzba.ispisiOpcije();
             System.out.print("Opcija:");
             odluka = Ssluzba.proveriOpciju();
-            switch (odluka) {
-                case 0:	
-                    System.out.println("Izlaz iz programa");	
-                    break;
-                case 1:	
-                    ssluzba.dodStud();	
-                    break;
-                case 2:	
-                    ssluzba.dodPredmet();	
-                    break;
-                case 3:	
-                    ssluzba.dodPredmet();	
-                    break;
-                default:
-                    System.out.println("Nepostojeca komanda");
-                    break;
                 
-            }
         }
     } 
 }

@@ -37,32 +37,27 @@ public class Student {
             return "Student: " + this.ime + " " + this.prezime + "\nBroj indeksa: " + this.brIndexa + "\nJMBG: " + this.jmbg;
     }
     
-    public Student(String brIndexa) throws FileNotFoundException, UnsupportedEncodingException{
+    
+    public Student(String ime, String prezime, String brIndexa, String jmbg, String username, String password) throws FileNotFoundException, UnsupportedEncodingException{
         
         this.brIndexa=brIndexa;
         
         System.out.println("---------------------------------------------------------------------");
-        System.out.println("Unesite podatke o novom studentu");
-        System.out.println("");
+        System.out.println("Unos podataka o novom studentu");
         
-        System.out.println("Ime novog studenta:");
-        String podatak = sc.nextLine();
-        this.ime=podatak;
+        this.ime=ime;
         
         System.out.println("Prezime novog studenta:");
-        podatak = sc.nextLine();
-        this.prezime=podatak;
+        this.prezime=prezime;
         
         System.out.println("JMBG novog studenta:");
-        this.jmbg=jmbgProvera();
+        this.jmbg=jmbgProvera(jmbg);
         
         System.out.println("Postavite korisnicko ime:");
-        podatak = sc.nextLine();
-        this.username=podatak;
+        this.username=username;
         
         System.out.println("Postavite lozinku:");
-        podatak = sc.nextLine();
-        this.pass=podatak;   
+        this.pass=pass;   
         
         PrintWriter out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(Ssluzba.getF(),true), "UTF8"));
         out.println(this.username + ":"+ this.pass + ":" + "student");
@@ -75,12 +70,10 @@ public class Student {
         System.out.println("---------------------------------------------------------------------");
     }
     
-    
-    public long jmbgProvera(){
+    public long jmbgProvera(String unos){
 
         boolean notRead = true;
         do {
-            String unos = sc.nextLine();
             String regexPattern = "^\\d{13}$";
             if(unos.matches(regexPattern)){
                 String datum = unos.substring(0,2);
