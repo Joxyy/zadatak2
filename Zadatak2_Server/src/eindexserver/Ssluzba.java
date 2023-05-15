@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class Ssluzba {
    
     
-    public ArrayList<Student> studenti = new ArrayList<Student>();
+    public static ArrayList<Student> studenti = new ArrayList<Student>();
     public ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
     
     private static String sP = System.getProperty("file.separator");
@@ -33,46 +33,11 @@ public class Ssluzba {
         return f;
     }
 
-    
-    public static boolean login() throws IOException{
-
-        //	ucitavanje users.txt
-        Scanner sc = new Scanner(System.in);
-
-        //provera da li postoji fajl
-        try{
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream( f), "UTF8")); 
-            String data;
-            System.out.println("-------------------------------------");
-            System.out.println("Unesite korisnicko ime");
-            String username = sc.nextLine();
-            while((data = in.readLine()) != null) {
-                String [] tokens = data.split(":");
-                if(tokens.length!=3){
-                    System.out.println("Greska pri ocitavanju" + tokens);
-                    System.exit(0);
-                }
-                if(tokens[0].equals(username)){
-                    System.out.println();
-                    System.out.println("Unesite lozinku");
-                    String pass = sc.nextLine();
-                    if(tokens[1].equals(pass))
-                    {
-                        if(tokens[2].equals("admin")){
-                            return false;
-                        }else System.out.println("nemate administratorska prava");
-                    }else System.out.println("pogresna lozinka");
-                }
-                else System.out.println("nepostojece korisnicko ime");
-            }
-            System.out.println("Neuspesno logovanje. Pokusajte ponovo");
-            System.out.println("-------------------------------------");
-            in.close();
-        }catch(FileNotFoundException e) {
-            System.out.println("Nije pronadjen users.txt!");
-            System.exit(127);
+    public static String podaciOStudentu(String username){
+        for (Student s : studenti){
+            if(s.getUsername().equals(username)) return s.toString();
         }
-        return true;
+        return "podaci o studentu nisu pronadjeni";
     }
     
     public static int login(String uName, String password) throws IOException{
@@ -92,7 +57,6 @@ public class Ssluzba {
                 }
                 if(tokens[0].equals(username)){
                     System.out.println();
-                    System.out.println("Unesite lozinku");
                     String pass = password;
                     if(tokens[1].equals(pass))
                     {
@@ -112,17 +76,6 @@ public class Ssluzba {
         return 0;
     }
 
-    public static void ispisiOpcije(){	
-            System.out.println("---------------------------------------------------------------------");
-            System.out.println("\tOpcija broj 1 - Dodavanje novog studenta");
-            System.out.println("\tOpcija broj 2 - Dodavanje novog predmeta");
-            System.out.println("\tOpcija broj 3 - Dodavanje studenata na predmet");
-            System.out.println("\tOpcija broj 4 - Dodela/azuriranje poena");
-            System.out.println("\tOpcija broj 5 - Dodavanje admina");
-            System.out.println("\t\t ...");
-            System.out.println("\tOpcija broj 0 - IZLAZ");	
-            System.out.println("---------------------------------------------------------------------");
-    }
     
     public static int proveriOpciju(){
         int opcija = -1;      
@@ -143,23 +96,17 @@ public class Ssluzba {
         return opcija;
     }
     
-    public void dodStud(String ime, String prezime, String index, String jmbg, String username, String password) throws FileNotFoundException, UnsupportedEncodingException{
-        
-        boolean postojiStud = false;
-        System.out.println("---------------------------------------------------------------------");
-        System.out.println("Unesite broj indexa");
-        String regexPattern = "^[eE][1-3][1-9][0-9]*{0,2}[-/]20(?:[01][0-9]|2[0-3])$";
-        if(index.matches(regexPattern)){
-            for(Student s : studenti){
-                if (s.getBrIndexa().equals(index)){
-                    System.out.println("Student sa brojem indexa " + index + "vec postoji");
-                    postojiStud=true;
-                }
+    public static void dodStud(String ime, String prezime, String index, String jmbg, String username, String password) throws FileNotFoundException, UnsupportedEncodingException{
+        boolean postojiStud=false;
+        for(Student s : studenti){
+            if (s.getBrIndexa().equals(index)){
+                System.out.println("Student sa brojem indexa " + index + "vec postoji");
+                postojiStud=true;
             }
-            if(!postojiStud){
-                studenti.add(new Student(ime, prezime,index,jmbg,username,password));
-            }
-        }else System.out.println("Neodgovarajuci format ");
+        }
+        if(!postojiStud){
+            studenti.add(new Student(ime, prezime,index,jmbg,username,password));
+        }
     }
     public void dodPredmet(){
         predmeti.add(new Predmet());

@@ -76,7 +76,7 @@ public class EindexServer {
     
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         // TODO code application logic here
-        
+        Ssluzba ssluzba = new Ssluzba();
         EindexServer server = new EindexServer(6001);
         
         Scanner sc = new Scanner(System.in);
@@ -87,13 +87,6 @@ public class EindexServer {
 
         //Prihvataj klijente u beskonacnoj petlji
         server.prihvatiKlijente();
-        
-        
-        while(odluka!= 0){
-            Ssluzba.ispisiOpcije();
-            System.out.print("Opcija:");
-            odluka = Ssluzba.proveriOpciju();
-                
-        }
+
     } 
 }

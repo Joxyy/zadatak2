@@ -124,13 +124,18 @@ public class EindexKlijent extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taPodaciOStudentu = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("LOGIN PAGE");
@@ -248,6 +253,11 @@ public class EindexKlijent extends javax.swing.JFrame {
 
         tfIme.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         tfIme.setText("ime");
+        tfIme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfImeActionPerformed(evt);
+            }
+        });
 
         tfPrezime.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         tfPrezime.setText("prezime");
@@ -279,8 +289,6 @@ public class EindexKlijent extends javax.swing.JFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lOcena.setText("lOcena");
-
-        lStudent.setText("lStudent");
 
         jTextField7.setText("jTextField7");
 
@@ -404,10 +412,11 @@ public class EindexKlijent extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfIndex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -416,9 +425,9 @@ public class EindexKlijent extends javax.swing.JFrame {
                 .addComponent(tfJmbg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lStudent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tfNewUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -453,9 +462,9 @@ public class EindexKlijent extends javax.swing.JFrame {
         jLabel5.setText("Podaci o studentu:");
         jLabel5.setToolTipText("");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taPodaciOStudentu.setColumns(20);
+        taPodaciOStudentu.setRows(5);
+        jScrollPane1.setViewportView(taPodaciOStudentu);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -490,7 +499,7 @@ public class EindexKlijent extends javax.swing.JFrame {
         pStudentLayout.setVerticalGroup(
             pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pStudentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pStudentLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -546,8 +555,6 @@ public class EindexKlijent extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             //Kreiraj novi socket (ako nije localhost, treba promeniti IP adresu)
-            pAdmin.setVisible(false);
-            pStudent.setVisible(false);
             this.socket = new Socket("127.0.0.1", 6001);
             //napravi BufferedReader i PrintWriter kako bi slao i primao poruke
             this.br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
@@ -587,8 +594,40 @@ public class EindexKlijent extends javax.swing.JFrame {
 
     private void btnStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudActionPerformed
         // TODO add your handling code here:
-        if (!(this.tfIme.getText().equals(""))&& !(this.tfPrezime.getText().equals(""))&& !(this.tfIndex.getText().equals(""))&& !(this.tfJmbg.getText().equals(""))) {
-            this.pw.println("student:" + tfIme.getText()+ ":"+ this.tfPrezime.getText()+ ":"+ this.tfIndex.getText()+ ":"+ this.tfJmbg.getText()+ ":"+ this.tfNewUsername.getText()+ ":"+ this.tfNewPassword.getText());
+        if (!(this.tfIme.getText().equals(""))&& !(this.tfPrezime.getText().equals(""))) {
+            
+        String provera= this.tfIndex.getText();           
+        String regexPattern = "^[eE][1-3][1-9][0-9]*{0,2}[-/]20(?:[01][0-9]|2[0-3])$";
+        if(provera.matches(regexPattern)){
+            regexPattern = "^\\d{13}$";
+            provera=this.tfJmbg.getText();
+            if(provera.matches(regexPattern)){
+                String datum = provera.substring(0,2);
+                int d = Integer.parseInt(datum);
+                String mesec = provera.substring(2,4);
+                int m = Integer.parseInt(mesec);
+                String godina = provera.substring(4,7);
+                int g = Integer.parseInt(godina);
+                boolean notRead=true;
+                if(d<=31 && m<=12 && (g<5 || g>970)){
+                    if(d==31){
+                        regexPattern="^(?:0[13578]|1[012])$";
+                        if(mesec.matches(regexPattern)) notRead=false;
+                        else lStudent.setText("upisani mesec nema 31 dan"); 
+                    }else if(d==30){
+                        if(mesec.equals("02")) lStudent.setText("upisani mesec nema 30 dana");
+                        else notRead=false;
+                    }else if(d==29 && mesec.equals("02")){
+                        if(g%4==0) notRead=false;
+                        else lStudent.setText("Uneta godina nije prestupna");   
+                    }else notRead=false;
+                }
+                if(!notRead) this.pw.println("student:" + tfIme.getText()+ ":"+ this.tfPrezime.getText()+ ":"+ this.tfIndex.getText()+ ":"+ this.tfJmbg.getText()+ ":"+ this.tfNewUsername.getText()+ ":"+ this.tfNewPassword.getText());;
+            }else lStudent.setText("Neispravan unos JMBG-a");
+    
+            }else lStudent.setText("Neispravan broj indexa");
+        
+            
     	}
     }//GEN-LAST:event_btnStudActionPerformed
 
@@ -603,6 +642,16 @@ public class EindexKlijent extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tfImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfImeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfImeActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        pAdmin.setVisible(false);
+        pStudent.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -662,7 +711,6 @@ public class EindexKlijent extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField6;
@@ -677,7 +725,8 @@ public class EindexKlijent extends javax.swing.JFrame {
     public javax.swing.JPanel pLogin;
     public javax.swing.JPanel pStudent;
     private javax.swing.JPasswordField pfPass;
-    private javax.swing.JTextField tfIme;
+    public javax.swing.JTextArea taPodaciOStudentu;
+    public javax.swing.JTextField tfIme;
     private javax.swing.JTextField tfIndex;
     private javax.swing.JTextField tfJmbg;
     private javax.swing.JTextField tfNewPassword;

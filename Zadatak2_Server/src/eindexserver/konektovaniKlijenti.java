@@ -31,6 +31,7 @@ class konektovaniKlijenti implements Runnable{
     public konektovaniKlijenti(Socket socket, ArrayList<konektovaniKlijenti> sviKlijenti) {
         this.socket = socket;
         this.sviKlijenti = sviKlijenti;
+        
 
         //iz socket-a preuzmi InputStream i OutputStream
         try {
@@ -86,6 +87,7 @@ class konektovaniKlijenti implements Runnable{
                         System.out.println("Student " + tokens[0] + " ulogovan");
                         this.userName=tokens[0];
                         this.pw.println("student");
+                        this.pw.println(Ssluzba.podaciOStudentu(tokens[0]));
                     }
                     
                     if (this.userName != null) {
@@ -107,12 +109,14 @@ class konektovaniKlijenti implements Runnable{
                     }
                     ////////CEKAMO KOMANDU/////////
                 } else {
+                    System.out.println("cekam poruku");
                     String line = this.br.readLine();
+                    System.out.println(line);
+                    System.out.println("stigla poruka");
                     if (line != null) {
-                        Ssluzba ssluzba = new Ssluzba();
                         String [] tokens = line.split(":");
-                        if (tokens[0].equals("student: ")) {
-                        ssluzba.dodStud(tokens[1],tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);	
+                        if (tokens[0].equals("student")) {
+                        Ssluzba.dodStud(tokens[1],tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);	
                         }
                     }
 

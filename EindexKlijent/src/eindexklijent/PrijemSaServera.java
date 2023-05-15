@@ -43,8 +43,14 @@ public class PrijemSaServera implements Runnable{
                     parent.pAdmin.setVisible(true);
                     parent.pLogin.setVisible(false);
                 } else if(line.equals("student")){
-                    parent.pAdmin.setVisible(true);
+                    parent.pStudent.setVisible(true);
                     parent.pLogin.setVisible(false);
+                    line = this.br.readLine();
+                    parent.taPodaciOStudentu.append(line+"\n");
+                    line = this.br.readLine();
+                    parent.taPodaciOStudentu.append(line+"\n");
+                    line = this.br.readLine();
+                    parent.taPodaciOStudentu.append(line+"\n");
                 }
                 else if(line.equals("Neuspesan login")){
                     parent.lProveriLogin.setText("Pogresno uneti podaci");

@@ -21,7 +21,7 @@ public class Student {
     private String ime;
     private String prezime;
     private String brIndexa;
-    private long jmbg;
+    private String jmbg;
     private Predmet predmet;
     
     private String username;
@@ -46,18 +46,10 @@ public class Student {
         System.out.println("Unos podataka o novom studentu");
         
         this.ime=ime;
-        
-        System.out.println("Prezime novog studenta:");
         this.prezime=prezime;
-        
-        System.out.println("JMBG novog studenta:");
-        this.jmbg=jmbgProvera(jmbg);
-        
-        System.out.println("Postavite korisnicko ime:");
+        this.jmbg=jmbg;;
         this.username=username;
-        
-        System.out.println("Postavite lozinku:");
-        this.pass=pass;   
+        this.pass=password;   
         
         PrintWriter out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(Ssluzba.getF(),true), "UTF8"));
         out.println(this.username + ":"+ this.pass + ":" + "student");
@@ -70,37 +62,7 @@ public class Student {
         System.out.println("---------------------------------------------------------------------");
     }
     
-    public long jmbgProvera(String unos){
-
-        boolean notRead = true;
-        do {
-            String regexPattern = "^\\d{13}$";
-            if(unos.matches(regexPattern)){
-                String datum = unos.substring(0,2);
-                int d = Integer.parseInt(datum);
-                String mesec = unos.substring(2,4);
-                int m = Integer.parseInt(mesec);
-                String godina = unos.substring(4,7);
-                int g = Integer.parseInt(godina);
-                if(d<=31 && m<=12 && (g<5 || g>970)){
-                    if(d==31){
-                        regexPattern="^(?:0[13578]|1[012])$";
-                        if(mesec.matches(regexPattern)) notRead=false;
-                        else System.out.println("upisani mesec nema 31 dan");   
-                    }else if(d==30){
-                        if(mesec.equals("02")) System.out.println("upisani mesec nema 30 dana");
-                        else notRead=false;
-                    }else if(d==29 && mesec.equals("02")){
-                        if(g%4==0) notRead=false; 
-                        else System.out.println("Uneta godina nije prestupna");   
-                    }else notRead = false;
-                }
-                if(!notRead) return Long.parseLong(unos);
-            }else System.out.println("Neispravan unos JMBG-a");
-        } while (notRead);
-        
-        return 0L;
-    }
+   
     
 
     public void setIme(String ime) {
@@ -115,7 +77,7 @@ public class Student {
         this.brIndexa = brIndexa;
     }
 
-    public void setJmbg(long jmbg) {
+    public void setJmbg(String jmbg) {
         this.jmbg = jmbg;
     }
 
@@ -143,7 +105,7 @@ public class Student {
         return brIndexa;
     }
 
-    public long getJmbg() {
+    public String getJmbg() {
         return jmbg;
     }
 
