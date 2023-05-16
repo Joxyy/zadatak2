@@ -89,7 +89,31 @@ class KonektovaniKlijenti implements Runnable{
         }
         System.out.println(predmeti);
     }
+    void predmetiStatus(String brIndexa) {
+        String predmeti = "PredmetiKojeSlusaIndex: ";
+            for (Student s : Ssluzba.studenti){
+                if(s.getBrIndexa().equals(brIndexa)){
+                for (Predmet p : s.predmetiKojeSlusa) predmeti += " " + p.getNazivPredmeta();
+            }
+        }
+        for (KonektovaniKlijenti svimaUpdateCB : this.sviKlijenti) {
+            svimaUpdateCB.pw.println(predmeti);
+        }
+        System.out.println(brIndexa+ " slusa: "+predmeti);
+    }
+    void katStatus(String predmet) {
+        String kat = "KatPredmetaKojiSlusaIndex: ";
+        for (Predmet p : Ssluzba.predmeti){
+            if(p.getNazivPredmeta().equals(predmet)){
+                for(String k : p.getKategorije())
+                    kat += " " + k;
+            }
+        }
+        for (KonektovaniKlijenti svimaUpdateCB : this.sviKlijenti) {
+            svimaUpdateCB.pw.println(kat);
+        }
 
+    }
     
     @Override
     public void run() {
@@ -117,6 +141,7 @@ class KonektovaniKlijenti implements Runnable{
                         this.pw.println("student");
                         this.pw.println(Ssluzba.podaciOStudentu(tokens[0]));
                     }
+                    
                     
                     if (this.userName != null) {
                         System.out.println("Konektovani korisnici: " + this.userName);
@@ -146,6 +171,7 @@ class KonektovaniKlijenti implements Runnable{
                         if (tokens[0].equals("student")) {
                             Ssluzba.dodStud(tokens[1],tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
                             studentiStatus();
+                            predmetiStatus(tokens[3]);
                         }
                         else if (tokens[0].equals("noviAdmin")){
                             Ssluzba.dodAdmin(tokens[1],tokens[2]);
@@ -154,16 +180,34 @@ class KonektovaniKlijenti implements Runnable{
                             Ssluzba.dodPredmet(tokens[1]);
                             predmetiStatus();
                         }
-                
+                        else if (tokens[0].equals("dodNaPredmet")){
+                            Ssluzba.dodStudentaNaPredmet(tokens[1], tokens[2]);
+                            //predmetiStatus();
+                        }
+                        else if (tokens[0].equals("novaKat")){
+                            for(Predmet p : Ssluzba.predmeti){
+                                if(p.getNazivPredmeta().equals(tokens[1])){
+                                    p.unosKat(tokens[2]);
+                                    p.unosMax(tokens[3]);
+                                }
+                            }
+                        }
+                        else if (tokens[0].equals("predmetiKojeSlusaIndex")){
+                            predmetiStatus(tokens[1]);
+                        }
+                        else if (tokens[0].equals("KatPredmetaKojiSlusaIndex")){
+                            katStatus(tokens[1]);
+                        }
+                        else if (tokens[0].equals("Ocena")){
+                            Ssluzba.upisiOcenu(tokens[1], tokens[2], tokens[3], tokens[4]);
+                        }
+
                     }
 
                 }
             } catch (IOException ex) {
                 System.out.println("Disconnected user: " + this.userName);
 
-                //Ovako se uklanja element iz kolekcije 
-                //ne moze se prolaziti kroz kolekciju sa foreach a onda u 
-                //telu petlje uklanjati element iz te iste kolekcije
                 Iterator<KonektovaniKlijenti> it = this.sviKlijenti.iterator();
                 while (it.hasNext()) {
                     if (it.next().getUserName().equals(this.userName)) {

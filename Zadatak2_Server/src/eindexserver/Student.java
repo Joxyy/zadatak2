@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -22,7 +23,7 @@ public class Student {
     private String prezime;
     private String brIndexa;
     private String jmbg;
-    private Predmet predmet;
+    public  ArrayList<Predmet> predmetiKojeSlusa = new ArrayList<Predmet>();
     
     private String username;
     private String pass;
@@ -81,10 +82,6 @@ public class Student {
         this.jmbg = jmbg;
     }
 
-    public void setPredmet(Predmet predmet) {
-        this.predmet = predmet;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -109,9 +106,6 @@ public class Student {
         return jmbg;
     }
 
-    public Predmet getPredmet() {
-        return predmet;
-    }
 
     public String getUsername() {
         return username;

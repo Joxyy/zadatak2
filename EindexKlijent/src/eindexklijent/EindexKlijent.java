@@ -30,6 +30,40 @@ public class EindexKlijent extends javax.swing.JFrame {
     private PrintWriter pw;
     private PrijemSaServera rmfs;
 
+    public JComboBox<String> getCbKat() {
+        return cbKat;
+    }
+
+    public JComboBox<String> getCbPredmetiStud() {
+        return cbPredmetiStud;
+    }
+
+    public JComboBox<String> getCbStudenti2() {
+        return cbStudenti2;
+    }
+
+    public void setCbKat(JComboBox<String> cbKat) {
+        this.cbKat = cbKat;
+    }
+
+    public void setCbPredmetiStud(JComboBox<String> cbPredmetiStud) {
+        this.cbPredmetiStud = cbPredmetiStud;
+    }
+
+    public void setCbStudenti2(JComboBox<String> cbStudenti2) {
+        this.cbStudenti2 = cbStudenti2;
+    }
+
+    public void setCbPredmetiStud2(JComboBox<String> cbPredmetiStud2) {
+        this.cbPredmetiStud2 = cbPredmetiStud2;
+    }
+
+    public JComboBox<String> getCbPredmetiStud2() {
+        return cbPredmetiStud2;
+    }
+    
+    
+
     public Socket getSocket() {
         return socket;
     }
@@ -109,6 +143,8 @@ public class EindexKlijent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        taPodaciOStudentu1 = new javax.swing.JTextArea();
         pLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -130,29 +166,39 @@ public class EindexKlijent extends javax.swing.JFrame {
         tfJmbg = new javax.swing.JTextField();
         tfNazivPredmeta = new javax.swing.JTextField();
         btnDodPredmet = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbStudenti2 = new javax.swing.JComboBox<>();
+        cbKat = new javax.swing.JComboBox<>();
         lOcena = new javax.swing.JLabel();
         lStudent = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        tfOcena = new javax.swing.JTextField();
+        btnKat = new javax.swing.JButton();
         btnDodNaPredmet = new javax.swing.JButton();
         cbStudenti = new javax.swing.JComboBox<>();
         cbPredmeti2 = new javax.swing.JComboBox<>();
         cbPredmeti = new javax.swing.JComboBox<>();
-        jTextField8 = new javax.swing.JTextField();
+        tfImeKat = new javax.swing.JTextField();
         tfAdminUsername = new javax.swing.JTextField();
         tfAdminPass = new javax.swing.JTextField();
         tfNewUsername = new javax.swing.JTextField();
         tfNewPassword = new javax.swing.JTextField();
+        tfMaxBodovi = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lProveriBodove = new javax.swing.JLabel();
+        cbPredmetiStud = new javax.swing.JComboBox<>();
         pStudent = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taPodaciOStudentu = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
+        cbPredmetiStud2 = new javax.swing.JComboBox<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        taPodaciOStudentu2 = new javax.swing.JTextArea();
+
+        taPodaciOStudentu1.setColumns(20);
+        taPodaciOStudentu1.setRows(5);
+        jScrollPane3.setViewportView(taPodaciOStudentu1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -210,25 +256,23 @@ public class EindexKlijent extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                    .addComponent(pfPass)
                     .addGroup(pLoginLayout.createSequentialGroup()
-                        .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfUsername)
-                            .addComponent(pfPass)
-                            .addComponent(btnKonekcija, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pLoginLayout.createSequentialGroup()
-                                .addComponent(lProveriLogin)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEnter)
-                        .addContainerGap())
-                    .addGroup(pLoginLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lKonekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnKonekcija, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lProveriLogin)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEnter)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(107, 107, 107))
+            .addGroup(pLoginLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(lKonekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pLoginLayout.setVerticalGroup(
             pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,25 +280,25 @@ public class EindexKlijent extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
-                .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pLoginLayout.createSequentialGroup()
+                .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
+                        .addGroup(pLoginLayout.createSequentialGroup()
+                            .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(pfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                            .addComponent(lProveriLogin)))
                     .addGroup(pLoginLayout.createSequentialGroup()
-                        .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lProveriLogin)
-                        .addGap(18, 18, 18)))
-                .addComponent(btnKonekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnKonekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lKonekcija)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -280,6 +324,11 @@ public class EindexKlijent extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(153, 255, 153));
         jButton3.setText("Upis ocene");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         tfIme.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         tfIme.setText("ime");
@@ -314,25 +363,47 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        lOcena.setText("lOcena");
-
-        jTextField7.setText("jTextField7");
-
-        jButton5.setBackground(new java.awt.Color(153, 255, 153));
-        jButton5.setText("Dodaj kategoriju");
-        jButton5.setActionCommand("");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        cbStudenti2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                cbStudenti2ActionPerformed(evt);
+            }
+        });
+        cbStudenti2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cbStudenti2PropertyChange(evt);
+            }
+        });
+
+        cbKat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKatActionPerformed(evt);
+            }
+        });
+
+        tfOcena.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        tfOcena.setText("ocena");
+        tfOcena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfOcenaActionPerformed(evt);
+            }
+        });
+
+        btnKat.setBackground(new java.awt.Color(153, 255, 153));
+        btnKat.setText("Dodaj kategoriju");
+        btnKat.setActionCommand("");
+        btnKat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKatActionPerformed(evt);
             }
         });
 
         btnDodNaPredmet.setBackground(new java.awt.Color(153, 255, 153));
         btnDodNaPredmet.setText("Dodaj na predmet");
+        btnDodNaPredmet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodNaPredmetActionPerformed(evt);
+            }
+        });
 
         cbStudenti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,10 +417,13 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
-        jTextField8.setText("jTextField8");
+        tfImeKat.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        tfImeKat.setText("naziv");
 
+        tfAdminUsername.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         tfAdminUsername.setText("Korisnicko ime");
 
+        tfAdminPass.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         tfAdminPass.setText("Lozinka");
         tfAdminPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,71 +447,102 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
+        tfMaxBodovi.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        tfMaxBodovi.setText("maxBodovi");
+
+        jLabel7.setText("potrebno je upisati kategorije i max bodove sa separatorom \" \"");
+
+        jLabel8.setText(" (kat1 kat2 kat3 i bod1 bod2 bod3)");
+
+        lProveriBodove.setForeground(new java.awt.Color(255, 0, 0));
+        lProveriBodove.setText("UNESITE 100 bodova zbirno");
+
+        cbPredmetiStud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPredmetiStudActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pAdminLayout = new javax.swing.GroupLayout(pAdmin);
         pAdmin.setLayout(pAdminLayout);
         pAdminLayout.setHorizontalGroup(
             pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pAdminLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pAdminLayout.createSequentialGroup()
+                .addGap(202, 202, 202)
                 .addComponent(jLabel6)
-                .addGap(126, 126, 126))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pAdminLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pAdminLayout.createSequentialGroup()
-                        .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnDodAdmina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(btnDodNaPredmet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cbPredmeti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbStudenti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfAdminUsername))
-                        .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pAdminLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jTextField8))
-                            .addGroup(pAdminLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfAdminPass, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbPredmeti2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap())
-                    .addGroup(pAdminLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pAdminLayout.createSequentialGroup()
                         .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnStud)
-                            .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lStudent)
-                                .addComponent(tfJmbg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pAdminLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pAdminLayout.createSequentialGroup()
+                                        .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(tfNewPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfNewUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(pAdminLayout.createSequentialGroup()
+                                        .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(tfIndex, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfPrezime, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(58, 58, 58)
+                                        .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lOcena)
+                                            .addGroup(pAdminLayout.createSequentialGroup()
+                                                .addComponent(cbKat, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(tfOcena, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(cbStudenti2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cbPredmetiStud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(pAdminLayout.createSequentialGroup()
+                                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnStud)
+                                    .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lStudent)
+                                        .addComponent(tfJmbg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(58, 58, 58)
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(11, 11, 11))
                     .addGroup(pAdminLayout.createSequentialGroup()
-                        .addComponent(btnDodPredmet, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfNazivPredmeta)
-                        .addContainerGap())
-                    .addGroup(pAdminLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pAdminLayout.createSequentialGroup()
-                                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(tfIndex, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfPrezime, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(58, 58, 58)
+                                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnDodAdmina, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnDodNaPredmet, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfAdminUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                    .addComponent(cbStudenti, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lOcena)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pAdminLayout.createSequentialGroup()
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cbPredmeti2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfAdminPass, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tfNewPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tfNewUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pAdminLayout.createSequentialGroup()
+                                    .addComponent(btnDodPredmet, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfNazivPredmeta))
+                                .addGroup(pAdminLayout.createSequentialGroup()
+                                    .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addGroup(pAdminLayout.createSequentialGroup()
+                                            .addComponent(btnKat, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cbPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tfImeKat, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfMaxBodovi, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(pAdminLayout.createSequentialGroup()
+                                    .addComponent(lProveriBodove)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8))))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         pAdminLayout.setVerticalGroup(
             pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,14 +555,14 @@ public class EindexKlijent extends javax.swing.JFrame {
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbStudenti2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPredmetiStud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbKat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfOcena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfIndex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -466,19 +571,27 @@ public class EindexKlijent extends javax.swing.JFrame {
                 .addComponent(tfJmbg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lStudent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(tfNewUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNazivPredmeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDodPredmet))
+                    .addComponent(btnDodPredmet)
+                    .addComponent(tfNazivPredmeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(btnKat)
                     .addComponent(cbPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfImeKat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfMaxBodovi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lProveriBodove))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodNaPredmet)
@@ -507,54 +620,53 @@ public class EindexKlijent extends javax.swing.JFrame {
         taPodaciOStudentu.setRows(5);
         jScrollPane1.setViewportView(taPodaciOStudentu);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
+        jLabel4.setText("Predmeti koje student slusa");
 
-        jLabel4.setText("Predmeti");
+        cbPredmetiStud2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPredmetiStud2ActionPerformed(evt);
+            }
+        });
+
+        taPodaciOStudentu2.setColumns(20);
+        taPodaciOStudentu2.setRows(5);
+        jScrollPane4.setViewportView(taPodaciOStudentu2);
 
         javax.swing.GroupLayout pStudentLayout = new javax.swing.GroupLayout(pStudent);
         pStudent.setLayout(pStudentLayout);
         pStudentLayout.setHorizontalGroup(
             pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pStudentLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pStudentLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))
-                    .addGroup(pStudentLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
-                .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pStudentLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95)
+                .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbPredmetiStud2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pStudentLayout.setVerticalGroup(
             pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pStudentLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pStudentLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pStudentLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pStudentLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbPredmetiStud2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -562,26 +674,27 @@ public class EindexKlijent extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addComponent(pLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(33, 33, 33)))
+                .addComponent(pAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -629,9 +742,31 @@ public class EindexKlijent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfJmbgActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnKatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        if (!(this.tfImeKat.getText().equals(""))&& !(this.tfMaxBodovi.getText().equals(""))&&!(this.cbPredmeti.getSelectedItem().equals(""))) {
+
+            String unos1 = this.tfImeKat.getText();
+            String [] tokens1 = unos1.split(" ");
+            
+            int suma = 0;
+            String unos2 = this.tfMaxBodovi.getText();
+            String [] tokens2 = unos2.split(" ");
+            String regexPattern = "^(?:[0-9]*{1,2}|100)$";
+            
+            if (tokens2.length==tokens1.length){
+                for (String t : tokens2){
+                    if(t.matches(regexPattern)) suma+=Integer.parseInt(t);
+                    else this.lProveriBodove.setText("Nisu uneti brojevi na svim mestima");
+                }
+                if(suma==100) {
+                    this.pw.println("novaKat:"+this.cbPredmeti.getSelectedItem()+ ":"+unos1+ ":"+ unos2);
+                    this.lProveriBodove.setText("Unos OK");
+                }else this.lProveriBodove.setText("Suma unetih bodova nije 100");
+            }
+            else this.lProveriBodove.setText("Nije unet jednak broj kategorija i bodova");
+    	}
+    }//GEN-LAST:event_btnKatActionPerformed
 
     private void btnStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudActionPerformed
         // TODO add your handling code here:
@@ -717,6 +852,53 @@ public class EindexKlijent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbStudentiActionPerformed
 
+    private void btnDodNaPredmetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodNaPredmetActionPerformed
+        // TODO add your handling code here:
+        if (!(this.cbStudenti.getSelectedItem().equals(""))&& !(this.cbPredmeti.getSelectedItem().equals(""))) {
+            this.pw.println("dodNaPredmet:"+this.cbStudenti.getSelectedItem()+ ":"+ this.cbPredmeti.getSelectedItem());
+        }
+    }//GEN-LAST:event_btnDodNaPredmetActionPerformed
+
+    private void cbPredmetiStud2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPredmetiStud2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPredmetiStud2ActionPerformed
+
+    private void tfOcenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfOcenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfOcenaActionPerformed
+
+    private void cbPredmetiStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPredmetiStudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPredmetiStudActionPerformed
+
+    private void cbStudenti2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStudenti2ActionPerformed
+        // TODO add your handling code here:
+        if (!(this.cbStudenti2.getSelectedItem().equals(""))) {
+            this.pw.println("predmetiKojeSlusaIndex:"+this.cbStudenti2.getSelectedItem());
+        }
+    }//GEN-LAST:event_cbStudenti2ActionPerformed
+
+    private void cbKatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKatActionPerformed
+        // TODO add your handling code here:
+        if (!(this.cbPredmetiStud.getSelectedItem().equals(""))) {
+            this.pw.println("KatPredmetaKojiSlusaIndex:"+this.cbPredmetiStud.getSelectedItem()+this.cbStudenti2.getSelectedItem());
+        }
+    }//GEN-LAST:event_cbKatActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (!(this.tfOcena.getText().equals(""))) {
+            this.pw.println("Ocena:"+this.tfOcena.getText()+":"+this.cbStudenti2.getSelectedItem()+":"+this.cbPredmetiStud.getSelectedItem()+":"+this.cbKat.getSelectedItem());
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbStudenti2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbStudenti2PropertyChange
+        // TODO add your handling code here:
+        if (!(this.cbStudenti2.getSelectedItem().equals(""))) {
+            this.pw.println("predmetiKojeSlusaIndex:"+this.cbStudenti2.getSelectedItem());
+        }
+    }//GEN-LAST:event_cbStudenti2PropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -757,29 +939,32 @@ public class EindexKlijent extends javax.swing.JFrame {
     private javax.swing.JButton btnDodNaPredmet;
     private javax.swing.JButton btnDodPredmet;
     private javax.swing.JButton btnEnter;
+    private javax.swing.JButton btnKat;
     private javax.swing.JButton btnKonekcija;
     private javax.swing.JButton btnStud;
+    private javax.swing.JComboBox<String> cbKat;
     public javax.swing.JComboBox<String> cbPredmeti;
     private javax.swing.JComboBox<String> cbPredmeti2;
+    private javax.swing.JComboBox<String> cbPredmetiStud;
+    public javax.swing.JComboBox<String> cbPredmetiStud2;
     public javax.swing.JComboBox<String> cbStudenti;
+    public javax.swing.JComboBox<String> cbStudenti2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lKonekcija;
     public javax.swing.JLabel lOcena;
+    private javax.swing.JLabel lProveriBodove;
     public javax.swing.JLabel lProveriLogin;
     public javax.swing.JLabel lStudent;
     public javax.swing.JPanel pAdmin;
@@ -787,14 +972,19 @@ public class EindexKlijent extends javax.swing.JFrame {
     public javax.swing.JPanel pStudent;
     private javax.swing.JPasswordField pfPass;
     public javax.swing.JTextArea taPodaciOStudentu;
+    public javax.swing.JTextArea taPodaciOStudentu1;
+    public javax.swing.JTextArea taPodaciOStudentu2;
     private javax.swing.JTextField tfAdminPass;
     private javax.swing.JTextField tfAdminUsername;
     public javax.swing.JTextField tfIme;
+    private javax.swing.JTextField tfImeKat;
     private javax.swing.JTextField tfIndex;
     private javax.swing.JTextField tfJmbg;
+    private javax.swing.JTextField tfMaxBodovi;
     private javax.swing.JTextField tfNazivPredmeta;
     private javax.swing.JTextField tfNewPassword;
     private javax.swing.JTextField tfNewUsername;
+    private javax.swing.JTextField tfOcena;
     private javax.swing.JTextField tfPrezime;
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables

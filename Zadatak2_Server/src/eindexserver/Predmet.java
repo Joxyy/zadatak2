@@ -13,9 +13,18 @@ import java.util.Scanner;
  */
 public class Predmet {
     private String nazivPredmeta;
-    private ArrayList<String> kategorije = new ArrayList<String>();
+    public ArrayList<String> kategorije = new ArrayList<String>();
     private ArrayList<Integer> maxPoeni= new ArrayList<Integer>();
-    private ArrayList<Integer> poeni = new ArrayList<Integer>();
+    public ArrayList<Integer> poeni = new ArrayList<Integer>();
+    private int Ocena;
+
+    public int getOcena() {
+        return Ocena;
+    }
+
+    public void setOcena(int Ocena) {
+        this.Ocena = Ocena;
+    }
 
     public String getNazivPredmeta() {
         return nazivPredmeta;
@@ -62,40 +71,26 @@ public class Predmet {
                     
         
     }
-    public void unosKat(){
-        boolean flg = true;
-        do{
-            System.out.println("---------------------------------------------------------------------");
-            System.out.println("Unos kategorije");
-            String unos = sc.nextLine();
-            kategorije.add(unos);
-            
-            System.out.println("Da li zelite da dodate jos kategorija (da/ne)");
-            unos = sc.nextLine();
-            if(unos.equalsIgnoreCase("ne")) flg=false;
-        }while(flg);
-        
-        this.unosMax();
+    public void unosKat(String unos){
+
+        System.out.println("---------------------------------------------------------------------");
+       
+        String [] tokens = unos.split(" ");
+        for(String t : tokens){
+            kategorije.add(t);
+        }
+        System.out.println("Unos kategorija: " + unos);
     }
     
-    public void unosMax(){
+    public void unosMax(String unos){
+       
+        String [] tokens = unos.split(" ");
+        for(String t : tokens){
+            maxPoeni.add(Integer.parseInt(t));
+        }
+        System.out.println("Unos max poena: " + unos);
         System.out.println("---------------------------------------------------------------------");
-        int suma = 0;
-        do{
-            for (String k : kategorije){
-                System.out.println("Unos max broja bodova za " + k +":");
-                maxPoeni.add(this.ocitajCeoBroj());
-            }
-            for(int m : maxPoeni){
-                suma+=m;
-            }
-            if(suma!=100) {
-                System.out.println("Zbirno mora biti 100 poena, ponovni pokusaj");
-                maxPoeni.clear();
-                suma=0;
-            }
-        }while(suma!=100);
-        System.out.println("---------------------------------------------------------------------");
+        
     }
     public int unosOcene(){
         int suma=0;

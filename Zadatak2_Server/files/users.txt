@@ -1,6 +1,4 @@
 administrator:admin12:admin
-Korisnicko ime:Lozinka:admin
-username:pass:student
 username:pass:student
 username:pass:student
 username:pass:student

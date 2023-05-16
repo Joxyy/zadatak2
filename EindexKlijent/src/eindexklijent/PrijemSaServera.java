@@ -51,6 +51,7 @@ public class PrijemSaServera implements Runnable{
                     parent.taPodaciOStudentu.append(line+"\n");
                     line = this.br.readLine();
                     parent.taPodaciOStudentu.append(line+"\n");
+                    
                 }
                 else if(line.equals("Neuspesan login")){
                     parent.lProveriLogin.setText("Pogresno uneti podaci");
@@ -70,10 +71,34 @@ public class PrijemSaServera implements Runnable{
                      String[] imena = line.split(":")[1].split(" ");
 
                     parent.getCbPredmeti().removeAllItems();
+                    parent.getCbStudenti2().removeAllItems();
 
                     for (String ime : imena) {
                         if (!ime.equals("")) {
                             parent.getCbStudenti().addItem(ime.trim());
+                            parent.getCbStudenti2().addItem(ime.trim());
+                        }
+                    }
+                }else if(line.startsWith("PredmetiKojeSlusaIndex: ")){
+                     String[] imena = line.split(":")[1].split(" ");
+
+                    parent.getCbPredmetiStud().removeAllItems();
+                    parent.getCbPredmetiStud2().removeAllItems();
+
+                    for (String ime : imena) {
+                        if (!ime.equals("")) {
+                            parent.getCbPredmetiStud().addItem(ime.trim());
+                            parent.getCbPredmetiStud2().addItem(ime.trim());
+                        }
+                    }
+                }else if(line.startsWith("KatPredmetaKojiSlusaIndex: ")){
+                     String[] imena = line.split(":")[1].split(" ");
+
+                    parent.getCbKat().removeAllItems();
+
+                    for (String ime : imena) {
+                        if (!ime.equals("")) {
+                            parent.getCbKat().addItem(ime.trim());
                         }
                     }
                 }

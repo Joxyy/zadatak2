@@ -102,5 +102,32 @@ public class Ssluzba {
     public static void dodPredmet(String nazivPredmeta){
         predmeti.add(new Predmet(nazivPredmeta));
     }
-    
+    public static void upisiOcenu(String ocena, String brIndexa, String predmet, String kat){
+        for(Student s : studenti){
+            if(s.getBrIndexa().equals(brIndexa)){
+                for(Predmet p : s.predmetiKojeSlusa){
+                    if(p.getNazivPredmeta().equals(predmet)){
+                        for(String k : p.kategorije){
+                            if (k.equals(kat)){
+                                //p.poeni.get(p.kategorije.indexOf(k))=
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public static void dodStudentaNaPredmet(String brIndexa, String nazivPredmeta){
+        for(Student s : studenti){
+            if(s.getBrIndexa().equals(brIndexa)){
+                for (Predmet p : predmeti){
+                    if(p.getNazivPredmeta().equals(nazivPredmeta)){
+                        s.predmetiKojeSlusa.add(p);
+                        System.out.println("---------------------------------------------------------------------");
+                        System.out.println(s.getUsername()+" je dodat na predmet " + p.getNazivPredmeta());
+                    }
+                }
+            }
+        }
+    }
 }
