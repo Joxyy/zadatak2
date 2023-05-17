@@ -101,11 +101,23 @@ class KonektovaniKlijenti implements Runnable{
         }
         System.out.println(brIndexa+ " slusa: "+predmeti);
     }
+    void predmetiStatus1(String username) {
+        String predmeti = "PredmetiKojeSlusaIndex: ";
+            for (Student s : Ssluzba.studenti){
+                if(s.getUsername().equals(username)){
+                for (Predmet p : s.predmetiKojeSlusa) predmeti += " " + p.getNazivPredmeta();
+            }
+        }
+        for (KonektovaniKlijenti svimaUpdateCB : this.sviKlijenti) {
+            svimaUpdateCB.pw.println(predmeti);
+        }
+        System.out.println(username+ " slusa: "+predmeti);
+    }
     void katStatus(String predmet) {
         String kat = "KatPredmetaKojiSlusaIndex: ";
         for (Predmet p : Ssluzba.predmeti){
             if(p.getNazivPredmeta().equals(predmet)){
-                for(String k : p.getKategorije())
+                for(String k : p.kategorije)
                     kat += " " + k;
             }
         }
@@ -140,13 +152,12 @@ class KonektovaniKlijenti implements Runnable{
                         this.userName=tokens[0];
                         this.pw.println("student");
                         this.pw.println(Ssluzba.podaciOStudentu(tokens[0]));
+                        predmetiStatus1(tokens[0]);
                     }
                     
                     
                     if (this.userName != null) {
                         System.out.println("Konektovani korisnici: " + this.userName);
-                        //informisi sve povezane klijente da imamo novog 
-                        //clana u chat room-u
                         klijentiStatus();
                     } else {
                         //ako je userName null to znaci da je terminiran klijent thread
@@ -182,7 +193,7 @@ class KonektovaniKlijenti implements Runnable{
                         }
                         else if (tokens[0].equals("dodNaPredmet")){
                             Ssluzba.dodStudentaNaPredmet(tokens[1], tokens[2]);
-                            //predmetiStatus();
+                            predmetiStatus(tokens[1]);
                         }
                         else if (tokens[0].equals("novaKat")){
                             for(Predmet p : Ssluzba.predmeti){
@@ -199,7 +210,14 @@ class KonektovaniKlijenti implements Runnable{
                             katStatus(tokens[1]);
                         }
                         else if (tokens[0].equals("Ocena")){
-                            Ssluzba.upisiOcenu(tokens[1], tokens[2], tokens[3], tokens[4]);
+                            String s;
+                            s = Ssluzba.upisiOcenu(tokens[1], tokens[2], tokens[3], tokens[4]);
+                            this.pw.println("Ocena:"+s);
+                        }
+                        else if (tokens[0].equals("OcenaStudent")){
+                            String s;
+                            s = Ssluzba.nadjiOcenu(tokens[1], tokens[2]);
+                            this.pw.println("OcenaStudent:"+s);
                         }
 
                     }

@@ -102,20 +102,41 @@ public class Ssluzba {
     public static void dodPredmet(String nazivPredmeta){
         predmeti.add(new Predmet(nazivPredmeta));
     }
-    public static void upisiOcenu(String ocena, String brIndexa, String predmet, String kat){
+    public static String upisiOcenu(String poeni, String brIndexa, String predmet, String kat){
         for(Student s : studenti){
             if(s.getBrIndexa().equals(brIndexa)){
                 for(Predmet p : s.predmetiKojeSlusa){
                     if(p.getNazivPredmeta().equals(predmet)){
-                        for(String k : p.kategorije){
-                            if (k.equals(kat)){
-                                //p.poeni.get(p.kategorije.indexOf(k))=
+                        for(int i=0; i<=p.kategorije.size(); i++){
+                            if (p.kategorije.get(i).equals(kat)){
+                                if(p.poeni.get(i)<=p.maxPoeni.get(i)){ 
+                                    p.poeni.set(i,Integer.valueOf(poeni));
+                                    int o;
+                                    p.setOcena();
+                                    o = p.getOcena();
+                                    return "ocena " + o;
+                                }else {
+                                    System.out.println("Prekoracen max broj poena");
+                                    return "Prekoracen max broj poena";
+                                }
                             }
                         }
                     }
                 }
             }
-        }
+        }return "greska";
+    }
+    public static String nadjiOcenu(String username, String predmet){
+        for(Student s : studenti){
+            if(s.getUsername().equals(username)){
+                for(Predmet p : s.predmetiKojeSlusa){
+                    if(p.getNazivPredmeta().equals(predmet)){
+                       int o = p.getOcena();
+                       return "ocena " + o;
+                    }
+                }
+            }
+        }return "greska";
     }
     public static void dodStudentaNaPredmet(String brIndexa, String nazivPredmeta){
         for(Student s : studenti){

@@ -102,6 +102,17 @@ public class PrijemSaServera implements Runnable{
                         }
                     }
                 }
+                else if(line.startsWith("Ocena:")){
+                     String[] imena = line.split(":");
+                    parent.lOcena.setText(imena[1]);
+                    parent.taPodaciOStudentu22.setText("");
+                    parent.taPodaciOStudentu22.append("Ocena: " + imena[1]);
+                }
+                else if(line.startsWith("OcenaStudent:")){
+                    String[] imena = line.split(":");
+                    parent.taPodaciOStudentu22.setText("");
+                    parent.taPodaciOStudentu22.append(imena[1]);
+                }
                 
             } catch (IOException ex) {
                 //Logger.getLogger(ReceiveMessageFromServer.class.getName()).log(Level.SEVERE, null, ex);

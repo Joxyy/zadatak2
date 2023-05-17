@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Predmet {
     private String nazivPredmeta;
     public ArrayList<String> kategorije = new ArrayList<String>();
-    private ArrayList<Integer> maxPoeni= new ArrayList<Integer>();
+    public ArrayList<Integer> maxPoeni= new ArrayList<Integer>();
     public ArrayList<Integer> poeni = new ArrayList<Integer>();
     private int Ocena;
 
@@ -22,8 +22,8 @@ public class Predmet {
         return Ocena;
     }
 
-    public void setOcena(int Ocena) {
-        this.Ocena = Ocena;
+    public void setOcena() {
+        this.Ocena = unosOcene();
     }
 
     public String getNazivPredmeta() {
@@ -59,8 +59,7 @@ public class Predmet {
     }
     
     
-    
-    Scanner sc = new Scanner(System.in);
+
     
     public Predmet(String nazivPredmeta){
         System.out.println("---------------------------------------------------------------------");
@@ -87,22 +86,20 @@ public class Predmet {
         String [] tokens = unos.split(" ");
         for(String t : tokens){
             maxPoeni.add(Integer.parseInt(t));
+            poeni.add(0);
         }
         System.out.println("Unos max poena: " + unos);
         System.out.println("---------------------------------------------------------------------");
         
     }
+
     public int unosOcene(){
         int suma=0;
         for(int i=0; i<this.kategorije.size();i++){
             System.out.println("---------------------------------------------------------------------");
-            System.out.println("Unos ocene za " + kategorije.get(i));
+            System.out.println("Unos ocene za " + this.getNazivPredmeta());
             
-            int unos = 0;
-            do{
-                unos=ocitajCeoBroj();
-            }while(unos<=this.maxPoeni.get(i));
-            suma+=unos;
+            suma+=this.poeni.get(i);
         }
         
         if (suma < 51) return 5;
@@ -114,18 +111,4 @@ public class Predmet {
         else return -1;
     }
     
-    public int ocitajCeoBroj(){
-        int ceoBroj = 0;
-        boolean notRead = true;
-        do {
-            if (sc.hasNextInt()) {
-                ceoBroj = sc.nextInt();
-                notRead = false;
-            } else {
-                System.out.println("GRESKA - Pogresno unsesena vrednost, pokusajte ponovo: ");
-            }
-            sc.nextLine(); //cisti sve sa ulaza sto nije broj ili ostatak teste posla broja
-        } while (notRead);
-        return ceoBroj;
-    }
 }

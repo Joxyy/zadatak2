@@ -194,7 +194,7 @@ public class EindexKlijent extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cbPredmetiStud2 = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        taPodaciOStudentu2 = new javax.swing.JTextArea();
+        taPodaciOStudentu22 = new javax.swing.JTextArea();
 
         taPodaciOStudentu1.setColumns(20);
         taPodaciOStudentu1.setRows(5);
@@ -363,14 +363,15 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
+        cbStudenti2.setName(""); // NOI18N
+        cbStudenti2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                cbStudenti2ComponentShown(evt);
+            }
+        });
         cbStudenti2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbStudenti2ActionPerformed(evt);
-            }
-        });
-        cbStudenti2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbStudenti2PropertyChange(evt);
             }
         });
 
@@ -585,9 +586,9 @@ public class EindexKlijent extends javax.swing.JFrame {
                     .addComponent(cbPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfImeKat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfMaxBodovi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(tfMaxBodovi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -628,9 +629,9 @@ public class EindexKlijent extends javax.swing.JFrame {
             }
         });
 
-        taPodaciOStudentu2.setColumns(20);
-        taPodaciOStudentu2.setRows(5);
-        jScrollPane4.setViewportView(taPodaciOStudentu2);
+        taPodaciOStudentu22.setColumns(20);
+        taPodaciOStudentu22.setRows(5);
+        jScrollPane4.setViewportView(taPodaciOStudentu22);
 
         javax.swing.GroupLayout pStudentLayout = new javax.swing.GroupLayout(pStudent);
         pStudent.setLayout(pStudentLayout);
@@ -854,13 +855,16 @@ public class EindexKlijent extends javax.swing.JFrame {
 
     private void btnDodNaPredmetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodNaPredmetActionPerformed
         // TODO add your handling code here:
-        if (!(this.cbStudenti.getSelectedItem().equals(""))&& !(this.cbPredmeti.getSelectedItem().equals(""))) {
+        if (!(this.cbStudenti.getSelectedItem()==null)&& !(this.cbPredmeti.getSelectedItem()==null)) {
             this.pw.println("dodNaPredmet:"+this.cbStudenti.getSelectedItem()+ ":"+ this.cbPredmeti.getSelectedItem());
         }
     }//GEN-LAST:event_btnDodNaPredmetActionPerformed
 
     private void cbPredmetiStud2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPredmetiStud2ActionPerformed
         // TODO add your handling code here:
+        if (!(this.cbPredmetiStud2.getSelectedItem()==null)) {
+            this.pw.println("OcenaStudent:"+this.tfUsername.getText()+":"+this.cbPredmetiStud2.getSelectedItem());
+        }
     }//GEN-LAST:event_cbPredmetiStud2ActionPerformed
 
     private void tfOcenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfOcenaActionPerformed
@@ -869,20 +873,21 @@ public class EindexKlijent extends javax.swing.JFrame {
 
     private void cbPredmetiStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPredmetiStudActionPerformed
         // TODO add your handling code here:
+        if (!(this.cbPredmetiStud.getSelectedItem()==null)) {
+            this.pw.println("KatPredmetaKojiSlusaIndex:"+this.cbPredmetiStud.getSelectedItem());
+        }
     }//GEN-LAST:event_cbPredmetiStudActionPerformed
 
     private void cbStudenti2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStudenti2ActionPerformed
         // TODO add your handling code here:
-        if (!(this.cbStudenti2.getSelectedItem().equals(""))) {
+        if (!(this.cbStudenti2.getSelectedItem()==null)) {
             this.pw.println("predmetiKojeSlusaIndex:"+this.cbStudenti2.getSelectedItem());
         }
     }//GEN-LAST:event_cbStudenti2ActionPerformed
 
     private void cbKatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKatActionPerformed
         // TODO add your handling code here:
-        if (!(this.cbPredmetiStud.getSelectedItem().equals(""))) {
-            this.pw.println("KatPredmetaKojiSlusaIndex:"+this.cbPredmetiStud.getSelectedItem()+this.cbStudenti2.getSelectedItem());
-        }
+
     }//GEN-LAST:event_cbKatActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -892,12 +897,9 @@ public class EindexKlijent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void cbStudenti2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbStudenti2PropertyChange
+    private void cbStudenti2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cbStudenti2ComponentShown
         // TODO add your handling code here:
-        if (!(this.cbStudenti2.getSelectedItem().equals(""))) {
-            this.pw.println("predmetiKojeSlusaIndex:"+this.cbStudenti2.getSelectedItem());
-        }
-    }//GEN-LAST:event_cbStudenti2PropertyChange
+    }//GEN-LAST:event_cbStudenti2ComponentShown
 
     /**
      * @param args the command line arguments
@@ -945,7 +947,7 @@ public class EindexKlijent extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbKat;
     public javax.swing.JComboBox<String> cbPredmeti;
     private javax.swing.JComboBox<String> cbPredmeti2;
-    private javax.swing.JComboBox<String> cbPredmetiStud;
+    public javax.swing.JComboBox<String> cbPredmetiStud;
     public javax.swing.JComboBox<String> cbPredmetiStud2;
     public javax.swing.JComboBox<String> cbStudenti;
     public javax.swing.JComboBox<String> cbStudenti2;
@@ -973,7 +975,7 @@ public class EindexKlijent extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfPass;
     public javax.swing.JTextArea taPodaciOStudentu;
     public javax.swing.JTextArea taPodaciOStudentu1;
-    public javax.swing.JTextArea taPodaciOStudentu2;
+    public javax.swing.JTextArea taPodaciOStudentu22;
     private javax.swing.JTextField tfAdminPass;
     private javax.swing.JTextField tfAdminUsername;
     public javax.swing.JTextField tfIme;
